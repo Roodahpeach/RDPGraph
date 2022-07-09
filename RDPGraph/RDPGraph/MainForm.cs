@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Numerics;
 using MaterialSkin;
 using MaterialSkin.Controls;
 
@@ -28,6 +28,8 @@ namespace RDPGraph
 
         private ScottPlot.Plottable.MarkerPlot HighlightedPoint;
         private int LastHighlightedIndex = -1;
+        private uint LastHighlightedID = 0xFFFFFFFF;
+
 
         public MainForm()
         {
@@ -173,7 +175,7 @@ namespace RDPGraph
         private void BT_ClearGraph_Click(object sender, EventArgs e)
         {
             ScatterLineList.Clear();
-            LastHighlightedIndex = -1;
+            GUI_ResetHighlightPointer();
 
             Main_Graph.Plot.XLabel("");
             Main_Graph.Plot.YLabel("");
@@ -191,30 +193,54 @@ namespace RDPGraph
             HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
             HighlightedPoint.IsVisible = false;
         }
+        private void GUI_ResetHighlightPointer()
+        {
+            LastHighlightedIndex = -1;
+            LastHighlightedID = 0xFFFFFFFF;
+        }
+
+        private double Scottplot_GetDistance(double x1, double x2, double y1, double y2)
+        {
+            double distance = Math.Sqrt((Math.Pow(x1 - x2, 2) + Math.Pow(y1 - y2, 2))); ;
+
+            return distance;
+        }
 
         private void Timer_GraphCrosshair_Tick(object sender, EventArgs e)
         {
-            //임시로 ID는 0인 ScatterLine만 체크함
+            (double mouseCoordX, double mouseCoordY) = Main_Graph.GetMouseCoordinates();
+            (double min_pointX, double min_pointY, int min_pointIndex) = ScatterLineList.ElementAt(0).Data.GetPointNearest(mouseCoordX, mouseCoordY);
+            double xyRatio = Main_Graph.Plot.XAxis.Dims.PxPerUnit / Main_Graph.Plot.YAxis.Dims.PxPerUnit;
+
+            double min_dist = Scottplot_GetDistance(min_pointX,mouseCoordX,min_pointY,mouseCoordY);
+            uint min_id = ScatterLineList.ElementAt(0).id;
+
             ScatterLineList.ForEach(delegate (Class_Mainform_ListScatterLine Scatterline){
-                if (Scatterline.id == AxisData_ID_Index - 1) 
+                (double pointX, double pointY, int pointIndex) = Scatterline.Data.GetPointNearest(mouseCoordX, mouseCoordY, xyRatio);
+                double temp_dist = Scottplot_GetDistance(pointX,mouseCoordX,pointY,mouseCoordY);
+                if(temp_dist < min_dist)
                 {
-                    (double mouseCoordX, double mouseCoordY) = Main_Graph.GetMouseCoordinates();
-                    double xyRatio = Main_Graph.Plot.XAxis.Dims.PxPerUnit / Main_Graph.Plot.YAxis.Dims.PxPerUnit;
-                    (double pointX, double pointY, int pointIndex) = Scatterline.Data.GetPointNearest(mouseCoordX, mouseCoordY, xyRatio);
-
-                    HighlightedPoint.X = pointX;
-                    HighlightedPoint.Y = pointY;
-                    HighlightedPoint.IsVisible = true;
-
-                    TF_PosX.Text = Convert.ToString(pointX);
-                    TF_PosY.Text = Convert.ToString(pointY);
-                    if (LastHighlightedIndex != pointIndex)
-                    {
-                        LastHighlightedIndex = pointIndex;
-                        Main_Graph.Render();
-                    }
+                    min_dist = temp_dist;
+                    min_pointX = pointX;
+                    min_pointY = pointY;
+                    min_pointIndex = pointIndex;
+                    min_id = Scatterline.id;
                 }
             });
+
+            HighlightedPoint.X = min_pointX;
+            HighlightedPoint.Y = min_pointY;
+            HighlightedPoint.IsVisible = true;
+
+            TF_PosX.Text = Convert.ToString(min_pointX);
+            TF_PosY.Text = Convert.ToString(min_pointY);
+            
+            if ((LastHighlightedID != min_id) || (LastHighlightedIndex != min_pointIndex))
+            {
+                LastHighlightedID = min_id;
+                LastHighlightedIndex = min_pointIndex;
+                Main_Graph.Render();
+            }
         }
     }
 
