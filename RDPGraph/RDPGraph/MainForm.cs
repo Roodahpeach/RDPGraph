@@ -27,7 +27,6 @@ namespace RDPGraph
         private List<Class_Mainform_ListScatterLine> ScatterLineList = new List<Class_Mainform_ListScatterLine>();
 
         private ScottPlot.Plottable.MarkerPlot HighlightedPoint;
-        private ScottPlot.Plottable.Annotation HighlightedPoint_Label;
         private int LastHighlightedIndex = -1;
 
         public MainForm()
@@ -191,20 +190,6 @@ namespace RDPGraph
             HighlightedPoint.MarkerSize = 10;
             HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
             HighlightedPoint.IsVisible = false;
-
-            HighlightedPoint_Label = Main_Graph.Plot.AddAnnotation("", 0, 0);
-            HighlightedPoint_Label.Font.Size = 20;
-            HighlightedPoint_Label.Font.Name = "Impact";
-            HighlightedPoint_Label.Font.Color = Color.White;
-            HighlightedPoint_Label.Shadow = false;
-            HighlightedPoint_Label.BackgroundColor = Color.FromArgb(25, Color.Blue);
-            HighlightedPoint_Label.BorderWidth = 2;
-            HighlightedPoint_Label.BorderColor = Color.DarkGray;
-
-            HighlightedPoint_Label.X = 0;
-            HighlightedPoint_Label.Y = 0;
-
-            HighlightedPoint_Label.IsVisible = false;
         }
 
         private void Timer_GraphCrosshair_Tick(object sender, EventArgs e)
@@ -221,15 +206,10 @@ namespace RDPGraph
                     HighlightedPoint.Y = pointY;
                     HighlightedPoint.IsVisible = true;
 
-                    HighlightedPoint_Label.IsVisible = true;
-
                     if (LastHighlightedIndex != pointIndex)
                     {
-                        HighlightedPoint_Label.Label = "(" + Convert.ToString(pointX) + ", " + Convert.ToString(pointY) + ")";
-
                         LastHighlightedIndex = pointIndex;
                         Main_Graph.Render();
-                        Main_Graph.Refresh();
                     }
                 }
             });
