@@ -42,8 +42,14 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.Main_Graph = new ScottPlot.FormsPlot();
             this.Timer_GraphCrosshair = new System.Windows.Forms.Timer(this.components);
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.TF_PosX = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.TF_PosY = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // TF_FilePath
@@ -112,7 +118,7 @@
             this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.groupBox2.Location = new System.Drawing.Point(973, 69);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(215, 619);
+            this.groupBox2.Size = new System.Drawing.Size(215, 227);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
@@ -199,12 +205,91 @@
             // 
             this.Timer_GraphCrosshair.Tick += new System.EventHandler(this.Timer_GraphCrosshair_Tick);
             // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.TF_PosY);
+            this.groupBox4.Controls.Add(this.TF_PosX);
+            this.groupBox4.Controls.Add(this.materialSingleLineTextField2);
+            this.groupBox4.Controls.Add(this.materialSingleLineTextField1);
+            this.groupBox4.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.groupBox4.Location = new System.Drawing.Point(973, 302);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(215, 115);
+            this.groupBox4.TabIndex = 5;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Current Position";
+            // 
+            // TF_PosX
+            // 
+            this.TF_PosX.Depth = 0;
+            this.TF_PosX.Hint = "";
+            this.TF_PosX.Location = new System.Drawing.Point(46, 37);
+            this.TF_PosX.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TF_PosX.Name = "TF_PosX";
+            this.TF_PosX.PasswordChar = '\0';
+            this.TF_PosX.SelectedText = "";
+            this.TF_PosX.SelectionLength = 0;
+            this.TF_PosX.SelectionStart = 0;
+            this.TF_PosX.Size = new System.Drawing.Size(148, 23);
+            this.TF_PosX.TabIndex = 6;
+            this.TF_PosX.Text = " ";
+            this.TF_PosX.UseSystemPasswordChar = false;
+            // 
+            // materialSingleLineTextField2
+            // 
+            this.materialSingleLineTextField2.Depth = 0;
+            this.materialSingleLineTextField2.Hint = "";
+            this.materialSingleLineTextField2.Location = new System.Drawing.Point(21, 76);
+            this.materialSingleLineTextField2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField2.Name = "materialSingleLineTextField2";
+            this.materialSingleLineTextField2.PasswordChar = '\0';
+            this.materialSingleLineTextField2.SelectedText = "";
+            this.materialSingleLineTextField2.SelectionLength = 0;
+            this.materialSingleLineTextField2.SelectionStart = 0;
+            this.materialSingleLineTextField2.Size = new System.Drawing.Size(19, 23);
+            this.materialSingleLineTextField2.TabIndex = 1;
+            this.materialSingleLineTextField2.Text = "Y";
+            this.materialSingleLineTextField2.UseSystemPasswordChar = false;
+            // 
+            // materialSingleLineTextField1
+            // 
+            this.materialSingleLineTextField1.Depth = 0;
+            this.materialSingleLineTextField1.Hint = "";
+            this.materialSingleLineTextField1.Location = new System.Drawing.Point(21, 37);
+            this.materialSingleLineTextField1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialSingleLineTextField1.Name = "materialSingleLineTextField1";
+            this.materialSingleLineTextField1.PasswordChar = '\0';
+            this.materialSingleLineTextField1.SelectedText = "";
+            this.materialSingleLineTextField1.SelectionLength = 0;
+            this.materialSingleLineTextField1.SelectionStart = 0;
+            this.materialSingleLineTextField1.Size = new System.Drawing.Size(19, 23);
+            this.materialSingleLineTextField1.TabIndex = 0;
+            this.materialSingleLineTextField1.Text = "X";
+            this.materialSingleLineTextField1.UseSystemPasswordChar = false;
+            // 
+            // TF_PosY
+            // 
+            this.TF_PosY.Depth = 0;
+            this.TF_PosY.Hint = "";
+            this.TF_PosY.Location = new System.Drawing.Point(46, 76);
+            this.TF_PosY.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TF_PosY.Name = "TF_PosY";
+            this.TF_PosY.PasswordChar = '\0';
+            this.TF_PosY.SelectedText = "";
+            this.TF_PosY.SelectionLength = 0;
+            this.TF_PosY.SelectionStart = 0;
+            this.TF_PosY.Size = new System.Drawing.Size(148, 23);
+            this.TF_PosY.TabIndex = 7;
+            this.TF_PosY.Text = " ";
+            this.TF_PosY.UseSystemPasswordChar = false;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.Main_Graph);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -214,6 +299,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -233,6 +319,11 @@
         private MaterialSkin.Controls.MaterialRaisedButton BT_FindFile;
         private MaterialSkin.Controls.MaterialRaisedButton BT_ClearGraph;
         private System.Windows.Forms.Timer Timer_GraphCrosshair;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField1;
+        private MaterialSkin.Controls.MaterialSingleLineTextField materialSingleLineTextField2;
+        private MaterialSkin.Controls.MaterialSingleLineTextField TF_PosX;
+        private MaterialSkin.Controls.MaterialSingleLineTextField TF_PosY;
     }
 }
 

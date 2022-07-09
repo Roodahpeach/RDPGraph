@@ -206,6 +206,8 @@ namespace RDPGraph
                     HighlightedPoint.Y = pointY;
                     HighlightedPoint.IsVisible = true;
 
+                    TF_PosX.Text = Convert.ToString(pointX);
+                    TF_PosY.Text = Convert.ToString(pointY);
                     if (LastHighlightedIndex != pointIndex)
                     {
                         LastHighlightedIndex = pointIndex;
