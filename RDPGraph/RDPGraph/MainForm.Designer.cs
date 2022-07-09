@@ -43,10 +43,10 @@
             this.Main_Graph = new ScottPlot.FormsPlot();
             this.Timer_GraphCrosshair = new System.Windows.Forms.Timer(this.components);
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.TF_PosY = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.TF_PosX = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialSingleLineTextField2 = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.materialSingleLineTextField1 = new MaterialSkin.Controls.MaterialSingleLineTextField();
-            this.TF_PosY = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -219,6 +219,22 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Current Position";
             // 
+            // TF_PosY
+            // 
+            this.TF_PosY.Depth = 0;
+            this.TF_PosY.Hint = "";
+            this.TF_PosY.Location = new System.Drawing.Point(46, 76);
+            this.TF_PosY.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TF_PosY.Name = "TF_PosY";
+            this.TF_PosY.PasswordChar = '\0';
+            this.TF_PosY.SelectedText = "";
+            this.TF_PosY.SelectionLength = 0;
+            this.TF_PosY.SelectionStart = 0;
+            this.TF_PosY.Size = new System.Drawing.Size(148, 23);
+            this.TF_PosY.TabIndex = 7;
+            this.TF_PosY.Text = " ";
+            this.TF_PosY.UseSystemPasswordChar = false;
+            // 
             // TF_PosX
             // 
             this.TF_PosX.Depth = 0;
@@ -267,24 +283,9 @@
             this.materialSingleLineTextField1.Text = "X";
             this.materialSingleLineTextField1.UseSystemPasswordChar = false;
             // 
-            // TF_PosY
-            // 
-            this.TF_PosY.Depth = 0;
-            this.TF_PosY.Hint = "";
-            this.TF_PosY.Location = new System.Drawing.Point(46, 76);
-            this.TF_PosY.MouseState = MaterialSkin.MouseState.HOVER;
-            this.TF_PosY.Name = "TF_PosY";
-            this.TF_PosY.PasswordChar = '\0';
-            this.TF_PosY.SelectedText = "";
-            this.TF_PosY.SelectionLength = 0;
-            this.TF_PosY.SelectionStart = 0;
-            this.TF_PosY.Size = new System.Drawing.Size(148, 23);
-            this.TF_PosY.TabIndex = 7;
-            this.TF_PosY.Text = " ";
-            this.TF_PosY.UseSystemPasswordChar = false;
-            // 
             // MainForm
             // 
+            this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -296,6 +297,8 @@
             this.Name = "MainForm";
             this.Sizable = false;
             this.Text = "CSV File Graph";
+            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.MainForm_DragDrop);
+            this.DragEnter += new System.Windows.Forms.DragEventHandler(this.MainForm_DragEnter);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

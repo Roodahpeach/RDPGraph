@@ -242,6 +242,30 @@ namespace RDPGraph
                 Main_Graph.Render();
             }
         }
+
+        private void MainForm_DragDrop(object sender, DragEventArgs e)
+        {
+            try
+            {
+                string[] files = (string[])e.Data.GetData(DataFormats.FileDrop);
+                foreach (string file in files)
+                {
+                    TF_FilePath.Text = file;
+                    this.BT_FileLoad_Click(sender, new EventArgs());
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        private void MainForm_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop)) e.Effect = DragDropEffects.Copy;
+        }
     }
 
     public class Class_Mainform_ListScatterLine
