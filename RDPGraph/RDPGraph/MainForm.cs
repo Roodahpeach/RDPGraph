@@ -31,8 +31,10 @@ namespace RDPGraph
 
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
+            materialSkinManager.Theme = MaterialSkinManager.Themes.DARK;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo900, Primary.Indigo500, Accent.Red200, TextShade.WHITE);
+
+            Main_Graph.Plot.Style(Style.Gray1);
         }
 
         private void BT_FileLoad_Click(object sender, EventArgs e)
@@ -136,11 +138,8 @@ namespace RDPGraph
             }
         }
 
-        private void BT_MakeGraph_Click(object sender, EventArgs e)
+        private void BT_AddGraph_Click(object sender, EventArgs e)
         {
-
-            Main_Graph.Plot.Clear();
-
 
             int HeaderIndex_X = CB_XAxis.SelectedIndex;
             int HeaderIndex_Y = CB_YAxis.SelectedIndex;
@@ -150,11 +149,18 @@ namespace RDPGraph
 
             Main_Graph.Plot.Title(str_FilePath.Split('\\').Last());
             Main_Graph.Plot.XLabel(AxisX.Axis_Header);
-            Main_Graph.Plot.YLabel(AxisY.Axis_Header);
 
-            Main_Graph.Plot.AddScatterLines(AxisX.Axis_Data, AxisY.Axis_Data);
+            Main_Graph.Plot.AddScatterLines(AxisX.Axis_Data, AxisY.Axis_Data, label: AxisY.Axis_Header);
             Main_Graph.Plot.Legend();
 
+            Main_Graph.Refresh();
+        }
+
+        private void BT_ClearGraph_Click(object sender, EventArgs e)
+        {
+            Main_Graph.Plot.XLabel("");
+            Main_Graph.Plot.YLabel("");
+            Main_Graph.Plot.Clear();
             Main_Graph.Refresh();
         }
     }
