@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.TF_FilePath = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.BT_FileLoad = new MaterialSkin.Controls.MaterialRaisedButton();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -40,6 +41,7 @@
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.Main_Graph = new ScottPlot.FormsPlot();
             this.BT_ClearGraph = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.Timer_GraphCrosshair = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -193,6 +195,10 @@
             this.BT_ClearGraph.UseVisualStyleBackColor = true;
             this.BT_ClearGraph.Click += new System.EventHandler(this.BT_ClearGraph_Click);
             // 
+            // Timer_GraphCrosshair
+            // 
+            this.Timer_GraphCrosshair.Tick += new System.EventHandler(this.Timer_GraphCrosshair_Tick);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -226,6 +232,7 @@
         private System.Windows.Forms.ComboBox CB_XAxis;
         private MaterialSkin.Controls.MaterialRaisedButton BT_FindFile;
         private MaterialSkin.Controls.MaterialRaisedButton BT_ClearGraph;
+        private System.Windows.Forms.Timer Timer_GraphCrosshair;
     }
 }
 

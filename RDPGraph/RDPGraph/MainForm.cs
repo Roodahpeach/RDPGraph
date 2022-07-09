@@ -22,6 +22,12 @@ namespace RDPGraph
         private Class_ScottPlotGraph GraphGraph = new Class_ScottPlotGraph();
         private string str_FilePath;
 
+        private uint AxisData_ID_Index = 0;
+
+        private List<Class_Mainform_ListScatterLine> ScatterLineList = new List<Class_Mainform_ListScatterLine>();
+
+        private ScottPlot.Plottable.MarkerPlot HighlightedPoint;
+        private int LastHighlightedIndex = -1;
 
         public MainForm()
         {
@@ -35,6 +41,7 @@ namespace RDPGraph
             materialSkinManager.ColorScheme = new ColorScheme(Primary.Indigo500, Primary.Indigo900, Primary.Indigo500, Accent.Red200, TextShade.WHITE);
 
             Main_Graph.Plot.Style(Style.Gray1);
+            //GUI_InitHighlightPointer();
         }
 
         private void BT_FileLoad_Click(object sender, EventArgs e)
@@ -69,6 +76,8 @@ namespace RDPGraph
                 }
 
                 //데이터 뽑기 2. 데이터 정리해서 Graph Class에 넣기
+                
+                GraphGraph.AxisList.Clear(); //기존 데이터 정리
 
                 for(var i = 0; i < HeaderList.Count; i++)
                 {
@@ -150,18 +159,71 @@ namespace RDPGraph
             Main_Graph.Plot.Title(str_FilePath.Split('\\').Last());
             Main_Graph.Plot.XLabel(AxisX.Axis_Header);
 
-            Main_Graph.Plot.AddScatterLines(AxisX.Axis_Data, AxisY.Axis_Data, label: AxisY.Axis_Header);
+            ScatterLineList.Add(new Class_Mainform_ListScatterLine(AxisData_ID_Index++, Main_Graph.Plot.AddScatter(AxisX.Axis_Data, AxisY.Axis_Data, label: AxisY.Axis_Header)));
             Main_Graph.Plot.Legend();
-
+            
+            Main_Graph.Plot.AxisAuto();
             Main_Graph.Refresh();
+
+            GUI_InitHighlightPointer();
+            Timer_GraphCrosshair.Start();
         }
 
         private void BT_ClearGraph_Click(object sender, EventArgs e)
         {
+            ScatterLineList.Clear();
+            LastHighlightedIndex = -1;
+
             Main_Graph.Plot.XLabel("");
             Main_Graph.Plot.YLabel("");
             Main_Graph.Plot.Clear();
             Main_Graph.Refresh();
+
+            Timer_GraphCrosshair.Stop();
+        }
+
+        private void GUI_InitHighlightPointer()
+        {
+            HighlightedPoint = Main_Graph.Plot.AddPoint(0, 0);
+            HighlightedPoint.Color = Color.Red;
+            HighlightedPoint.MarkerSize = 10;
+            HighlightedPoint.MarkerShape = ScottPlot.MarkerShape.openCircle;
+            HighlightedPoint.IsVisible = false;
+        }
+
+        private void Timer_GraphCrosshair_Tick(object sender, EventArgs e)
+        {
+            //임시로 ID는 0인 ScatterLine만 체크함
+            ScatterLineList.ForEach(delegate (Class_Mainform_ListScatterLine Scatterline){
+                if (Scatterline.id == AxisData_ID_Index - 1) 
+                {
+                    (double mouseCoordX, double mouseCoordY) = Main_Graph.GetMouseCoordinates();
+                    double xyRatio = Main_Graph.Plot.XAxis.Dims.PxPerUnit / Main_Graph.Plot.YAxis.Dims.PxPerUnit;
+                    (double pointX, double pointY, int pointIndex) = Scatterline.Data.GetPointNearest(mouseCoordX, mouseCoordY, xyRatio);
+
+                    HighlightedPoint.X = pointX;
+                    HighlightedPoint.Y = pointY;
+                    HighlightedPoint.IsVisible = true;
+
+                    if(LastHighlightedIndex != pointIndex)
+                    {
+                        LastHighlightedIndex = pointIndex;
+                        Main_Graph.Render();
+                    }
+                }
+            });
+        }
+    }
+
+    public class Class_Mainform_ListScatterLine
+    {
+        public uint id;
+        public ScottPlot.Plottable.ScatterPlot Data;
+
+        public Class_Mainform_ListScatterLine(uint id, ScottPlot.Plottable.ScatterPlot Data)
+        {
+            this.id = id;
+            this.Data = Data;
         }
     }
 }

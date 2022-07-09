@@ -20,6 +20,7 @@ namespace RDPGraph
 
     internal class Class_ScottPlotGraph_AxisData
     {
+        public uint ID;
         public string Axis_Header;
         public double[] Axis_Data;
 
