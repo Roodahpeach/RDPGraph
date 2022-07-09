@@ -34,13 +34,13 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BT_FindFile = new MaterialSkin.Controls.MaterialRaisedButton();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BT_ClearGraph = new MaterialSkin.Controls.MaterialRaisedButton();
             this.BT_AddGraph = new MaterialSkin.Controls.MaterialRaisedButton();
             this.CB_YAxis = new System.Windows.Forms.ComboBox();
             this.CB_XAxis = new System.Windows.Forms.ComboBox();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.Main_Graph = new ScottPlot.FormsPlot();
-            this.BT_ClearGraph = new MaterialSkin.Controls.MaterialRaisedButton();
             this.Timer_GraphCrosshair = new System.Windows.Forms.Timer(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -117,6 +117,19 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Control";
             // 
+            // BT_ClearGraph
+            // 
+            this.BT_ClearGraph.Depth = 0;
+            this.BT_ClearGraph.Location = new System.Drawing.Point(115, 162);
+            this.BT_ClearGraph.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BT_ClearGraph.Name = "BT_ClearGraph";
+            this.BT_ClearGraph.Primary = true;
+            this.BT_ClearGraph.Size = new System.Drawing.Size(79, 52);
+            this.BT_ClearGraph.TabIndex = 5;
+            this.BT_ClearGraph.Text = "Clear Graph";
+            this.BT_ClearGraph.UseVisualStyleBackColor = true;
+            this.BT_ClearGraph.Click += new System.EventHandler(this.BT_ClearGraph_Click);
+            // 
             // BT_AddGraph
             // 
             this.BT_AddGraph.Depth = 0;
@@ -181,19 +194,6 @@
             this.Main_Graph.Name = "Main_Graph";
             this.Main_Graph.Size = new System.Drawing.Size(948, 562);
             this.Main_Graph.TabIndex = 4;
-            // 
-            // BT_ClearGraph
-            // 
-            this.BT_ClearGraph.Depth = 0;
-            this.BT_ClearGraph.Location = new System.Drawing.Point(115, 162);
-            this.BT_ClearGraph.MouseState = MaterialSkin.MouseState.HOVER;
-            this.BT_ClearGraph.Name = "BT_ClearGraph";
-            this.BT_ClearGraph.Primary = true;
-            this.BT_ClearGraph.Size = new System.Drawing.Size(79, 52);
-            this.BT_ClearGraph.TabIndex = 5;
-            this.BT_ClearGraph.Text = "Clear Graph";
-            this.BT_ClearGraph.UseVisualStyleBackColor = true;
-            this.BT_ClearGraph.Click += new System.EventHandler(this.BT_ClearGraph_Click);
             // 
             // Timer_GraphCrosshair
             // 
