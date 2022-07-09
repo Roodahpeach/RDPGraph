@@ -28,13 +28,188 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.TF_FilePath = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.BT_FileLoad = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Main_Graph = new ScottPlot.FormsPlot();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.CB_XAxis = new System.Windows.Forms.ComboBox();
+            this.CB_YAxis = new System.Windows.Forms.ComboBox();
+            this.BT_MakeGraph = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.BT_FindFile = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.SuspendLayout();
+            // 
+            // TF_FilePath
+            // 
+            this.TF_FilePath.Depth = 0;
+            this.TF_FilePath.Hint = "";
+            this.TF_FilePath.Location = new System.Drawing.Point(6, 20);
+            this.TF_FilePath.MouseState = MaterialSkin.MouseState.HOVER;
+            this.TF_FilePath.Name = "TF_FilePath";
+            this.TF_FilePath.PasswordChar = '\0';
+            this.TF_FilePath.SelectedText = "";
+            this.TF_FilePath.SelectionLength = 0;
+            this.TF_FilePath.SelectionStart = 0;
+            this.TF_FilePath.Size = new System.Drawing.Size(751, 23);
+            this.TF_FilePath.TabIndex = 0;
+            this.TF_FilePath.Text = "File Path";
+            this.TF_FilePath.UseSystemPasswordChar = false;
+            // 
+            // BT_FileLoad
+            // 
+            this.BT_FileLoad.Depth = 0;
+            this.BT_FileLoad.Location = new System.Drawing.Point(857, 20);
+            this.BT_FileLoad.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BT_FileLoad.Name = "BT_FileLoad";
+            this.BT_FileLoad.Primary = true;
+            this.BT_FileLoad.Size = new System.Drawing.Size(92, 23);
+            this.BT_FileLoad.TabIndex = 1;
+            this.BT_FileLoad.Text = "File Load";
+            this.BT_FileLoad.UseVisualStyleBackColor = true;
+            this.BT_FileLoad.Click += new System.EventHandler(this.BT_FileLoad_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.BT_FindFile);
+            this.groupBox1.Controls.Add(this.TF_FilePath);
+            this.groupBox1.Controls.Add(this.BT_FileLoad);
+            this.groupBox1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox1.Location = new System.Drawing.Point(12, 636);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(955, 52);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "CSV File Load";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BT_MakeGraph);
+            this.groupBox2.Controls.Add(this.CB_YAxis);
+            this.groupBox2.Controls.Add(this.CB_XAxis);
+            this.groupBox2.Controls.Add(this.materialLabel2);
+            this.groupBox2.Controls.Add(this.materialLabel1);
+            this.groupBox2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.groupBox2.Location = new System.Drawing.Point(973, 69);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(215, 619);
+            this.groupBox2.TabIndex = 3;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Control";
+            // 
+            // Main_Graph
+            // 
+            this.Main_Graph.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Main_Graph.Location = new System.Drawing.Point(18, 69);
+            this.Main_Graph.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
+            this.Main_Graph.Name = "Main_Graph";
+            this.Main_Graph.Size = new System.Drawing.Size(948, 562);
+            this.Main_Graph.TabIndex = 4;
+            // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(18, 30);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(50, 18);
+            this.materialLabel1.TabIndex = 0;
+            this.materialLabel1.Text = "X Axis";
+            // 
+            // materialLabel2
+            // 
+            this.materialLabel2.AutoSize = true;
+            this.materialLabel2.Depth = 0;
+            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel2.Location = new System.Drawing.Point(18, 97);
+            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel2.Name = "materialLabel2";
+            this.materialLabel2.Size = new System.Drawing.Size(50, 18);
+            this.materialLabel2.TabIndex = 1;
+            this.materialLabel2.Text = "Y Axis";
+            // 
+            // CB_XAxis
+            // 
+            this.CB_XAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CB_XAxis.Location = new System.Drawing.Point(21, 52);
+            this.CB_XAxis.Name = "CB_XAxis";
+            this.CB_XAxis.Size = new System.Drawing.Size(173, 20);
+            this.CB_XAxis.TabIndex = 2;
+            // 
+            // CB_YAxis
+            // 
+            this.CB_YAxis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.CB_YAxis.FormattingEnabled = true;
+            this.CB_YAxis.Location = new System.Drawing.Point(21, 118);
+            this.CB_YAxis.Name = "CB_YAxis";
+            this.CB_YAxis.Size = new System.Drawing.Size(173, 20);
+            this.CB_YAxis.TabIndex = 3;
+            // 
+            // BT_MakeGraph
+            // 
+            this.BT_MakeGraph.Depth = 0;
+            this.BT_MakeGraph.Location = new System.Drawing.Point(21, 158);
+            this.BT_MakeGraph.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BT_MakeGraph.Name = "BT_MakeGraph";
+            this.BT_MakeGraph.Primary = true;
+            this.BT_MakeGraph.Size = new System.Drawing.Size(173, 52);
+            this.BT_MakeGraph.TabIndex = 4;
+            this.BT_MakeGraph.Text = "Make Graph";
+            this.BT_MakeGraph.UseVisualStyleBackColor = true;
+            this.BT_MakeGraph.Click += new System.EventHandler(this.BT_MakeGraph_Click);
+            // 
+            // BT_FindFile
+            // 
+            this.BT_FindFile.Depth = 0;
+            this.BT_FindFile.Location = new System.Drawing.Point(763, 20);
+            this.BT_FindFile.MouseState = MaterialSkin.MouseState.HOVER;
+            this.BT_FindFile.Name = "BT_FindFile";
+            this.BT_FindFile.Primary = true;
+            this.BT_FindFile.Size = new System.Drawing.Size(88, 23);
+            this.BT_FindFile.TabIndex = 2;
+            this.BT_FindFile.Text = "Find File";
+            this.BT_FindFile.UseVisualStyleBackColor = true;
+            this.BT_FindFile.Click += new System.EventHandler(this.BT_FindFile_Click);
+            // 
+            // MainForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(1200, 700);
+            this.Controls.Add(this.Main_Graph);
+            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.groupBox1);
+            this.Name = "MainForm";
+            this.Sizable = false;
+            this.Text = "CSV File Graph";
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private MaterialSkin.Controls.MaterialSingleLineTextField TF_FilePath;
+        private MaterialSkin.Controls.MaterialRaisedButton BT_FileLoad;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private ScottPlot.FormsPlot Main_Graph;
+        private MaterialSkin.Controls.MaterialLabel materialLabel2;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialRaisedButton BT_MakeGraph;
+        private System.Windows.Forms.ComboBox CB_YAxis;
+        private System.Windows.Forms.ComboBox CB_XAxis;
+        private MaterialSkin.Controls.MaterialRaisedButton BT_FindFile;
     }
 }
 
