@@ -14,9 +14,16 @@ using MaterialSkin.Controls;
 using ScottPlot;
 using System.Collections;
 
+
+/// <summary>
+/// 개발 예정 목록
+/// ----Hex값 업데이트
+/// 데이터 리스트 쪼개기
+/// 통계 알고리즘 추가?
+/// 
+/// </summary>
 namespace RDPGraph
 {
-
     public partial class MainForm : MaterialForm
     {
         private Class_ScottPlotGraph GraphGraph = new Class_ScottPlotGraph();
@@ -73,7 +80,16 @@ namespace RDPGraph
 
                     foreach (string part in parts)
                     {
-                        DataList.Add(part);
+                        if(part.Contains("0x") || part.Contains("0X")) //Hex값 처리
+                        {
+                            string Str_HexWork = part.Remove(0, 2); //앞에 두개 떼고
+                            DataList.Add(Convert.ToInt64(Str_HexWork,16).ToString()); //16진수를 10진수 변환한걸 리스트에 넣는다.
+                        }
+                        else //일반 10진수의 경우?
+                        {
+                            DataList.Add(part);
+                        }
+                        
                     }
                 }
 
