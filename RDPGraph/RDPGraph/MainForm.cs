@@ -111,7 +111,7 @@ namespace RDPGraph
                             tempAxisDataList.Add(DataList[j]);
                         }
                     }
-                    temp.SetAxisData(tempAxisDataList);
+                    temp.SetAxisData(tempAxisDataList); // 실제 Double형 리스트로 바꿔서 넣는다.
 
                     GraphGraph.AxisList.Add(temp);
                 }

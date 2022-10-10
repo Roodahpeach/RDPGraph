@@ -35,7 +35,15 @@ namespace RDPGraph
 
             for (var i = 0; i < Axis_Data.Count; i++)
             {
-                this.Axis_Data[i] = Convert.ToDouble((string)Axis_Data[i]);
+                try
+                {
+                    this.Axis_Data[i] = Convert.ToDouble((string)Axis_Data[i]);
+                }
+                catch(Exception e) //간혹 데이터중에 스트링이나 메시지같이 오는 친구들이 있는데 이런거 그냥 스킵하기로 함.
+                {
+                    //Skip Add
+                }
+                
             }
 
         }

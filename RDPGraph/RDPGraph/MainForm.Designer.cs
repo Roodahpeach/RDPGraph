@@ -109,6 +109,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox2.Controls.Add(this.BT_ClearGraph);
             this.groupBox2.Controls.Add(this.BT_AddGraph);
             this.groupBox2.Controls.Add(this.CB_YAxis);
@@ -207,6 +208,7 @@
             // 
             // groupBox4
             // 
+            this.groupBox4.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.groupBox4.Controls.Add(this.TF_PosY);
             this.groupBox4.Controls.Add(this.TF_PosX);
             this.groupBox4.Controls.Add(this.materialSingleLineTextField2);
