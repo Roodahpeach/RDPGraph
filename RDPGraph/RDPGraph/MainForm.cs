@@ -73,7 +73,10 @@ namespace RDPGraph
 
                     foreach (string part in parts)
                     {
-                        DataList.Add(part);
+                        if(part != "")
+                        {
+                            DataList.Add(part);
+                        }
                     }
                 }
 
